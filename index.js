@@ -6,23 +6,20 @@ async function loadScenes() {
   const response = await fetch("./scenes/scenes.json");
   const contentType = response.headers.get("content-type");
   let data;
-  if (contentType && contentType.includes("application/json")) {
-    data = await response.json();
-  } else {
-    const text = await response.text();
-    // если строка начинается не с '{', считаем её сжатой
-    if (text[0] !== "{") {
-      try {
-        const decompressed = LZString.decompress(text);
-        data = JSON.parse(decompressed);
-      } catch (e) {
-        console.error("Ошибка распаковки", e);
-        data = {};
-      }
-    } else {
-      data = JSON.parse(text);
+  
+  const text = await response.text();
+  if (text[0] !== "{") {
+    try {
+      const decompressed = LZString.decompressFromBase64(text);
+      data = JSON.parse(decompressed);
+    } catch (e) {
+      console.error("Ошибка распаковки", e);
+      data = {};
     }
+  } else {
+    data = JSON.parse(text);
   }
+
   scenes = data;
   sceneIds = Object.keys(scenes);
   populateSelect();
