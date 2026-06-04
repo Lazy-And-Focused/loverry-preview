@@ -2,7 +2,10 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <title>loverry — плей-тест</title>
     <link rel="stylesheet" href="index.css" />
     <link
@@ -12,23 +15,28 @@
     <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
   </head>
   <body>
-    <div class="app-container">
-      <header class="app-header">
+    <div id="bg-layer" class="bg-layer"></div>
+    <div id="characters-layer" class="characters-layer"></div>
+    <div id="effect-overlay" class="effect-overlay"></div>
+
+    <div class="novel-panel">
+      <header class="panel-header">
         <h1>loverry — интерактивный плей-тест</h1>
         <div class="scene-picker">
           <label for="sceneSelect">Сцена: </label>
           <select id="sceneSelect"></select>
         </div>
       </header>
-      <main id="content" class="scene-content">
-        <div class="placeholder">Загрузка сцен...</div>
-      </main>
-      <footer class="app-footer">
+
+      <main id="content" class="scene-content"></main>
+
+      <footer class="panel-footer">
         <button id="prevSceneBtn" disabled>← Предыдущая</button>
         <span id="sceneCounter"></span>
         <button id="nextSceneBtn" disabled>Следующая →</button>
       </footer>
     </div>
+
     <script src="index.js"></script>
   </body>
 </html>
