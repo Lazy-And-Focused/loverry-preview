@@ -24,53 +24,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
-          run_install: false
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Cache pnpm store
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build CLI
-        run: pnpm run build
-
-      - name: Generate scenes.json from Markdown files
-        run: |
-          node "./apps/cli/dist/index.js" export "./lore/Cюжет" --registry "./lore/Реестр" --cn -c --of --js 0 --re
-
       - name: Prepare public directory
         run: |
-          mkdir -p public/scenes
           mkdir -p public/assets
-          cp index.html public/
-          cp index.css public/
-          cp index.js public/
-          cp scenes/scenes.json public/scenes/
-          # Копируем assets из корня, если они есть
+          mkdir -p public/scenes
+          # Копируем основные файлы плей-теста
+          cp index.html index.css index.js public/
+          # Копируем scenes.json, если он уже сгенерирован и лежит в корне или в папке scenes
+          if [ -f "scenes/scenes.json" ]; then cp scenes/scenes.json public/scenes/; fi
+          # Копируем все ассеты (изображения фонов, спрайты персонажей и т.д.)
           if [ -d "assets" ]; then cp -r assets/* public/assets/; fi
-          # Если assets лежат в lore/assets (или другом месте), раскомментируйте нужную строку:
-          # if [ -d "lore/assets" ]; then cp -r lore/assets/* public/assets/; fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
