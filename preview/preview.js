@@ -18,7 +18,7 @@ let nextStepBtn = null;
 
 // ======================== ЗАГРУЗКА СЦЕН ========================
 async function loadScenes() {
-  const response = await fetch("/scenes/scenes.json");
+  const response = await fetch("/loverry-preview/scenes/scenes.json");
   const text = await response.text();
   let data;
   if (text[0] !== "{") {
@@ -90,7 +90,7 @@ function setBackground(file) {
   if (!file) return;
   const bgLayer = document.getElementById("bg-layer");
   if (!bgLayer) return;
-  const imagePath = `/assets/background/${file}`;
+  const imagePath = `/loverry-preview/assets/background/${file}`;
   // проверка существования (необязательно, но полезно)
   const img = new Image();
   img.onload = () => { bgLayer.style.backgroundImage = `url('${imagePath}')`; };
@@ -115,7 +115,7 @@ function setCharacter(characterId, sprite, position, emotion, hidden = false) {
     return;
   }
   img.style.display = "block";
-  const basePath = `/assets/characters/${characterId}`;
+  const basePath = `/loverry-preview/assets/characters/${characterId}`;
   const spriteFile = sprite || "default.png";
   const src = `${basePath}/${spriteFile}`;
   // проверка существования

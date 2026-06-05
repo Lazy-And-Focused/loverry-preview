@@ -3,7 +3,7 @@ let currentSceneId = null;
 let sceneIds = [];
 
 async function loadScenes() {
-  const response = await fetch("/scenes/scenes.json");
+  const response = await fetch("/loverry-preview/scenes/scenes.json");
   const contentType = response.headers.get("content-type");
   let data;
 
