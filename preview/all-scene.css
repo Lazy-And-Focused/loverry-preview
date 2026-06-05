@@ -1,0 +1,279 @@
+:root {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --text-primary: #e2e2e2;
+  --text-muted: #a0a0b0;
+  --accent-dialogue: #4cc9f0;
+  --accent-thought: #f2c94c;
+  --accent-action: #95a5a6;
+  --accent-choice: #f39c12;
+  --accent-choice-bg: #2c1e0e;
+  --border-color: #2c2c3e;
+  --font-sans: "Inter", "Roboto", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  line-height: 1.5;
+  padding: 2rem 1rem;
+}
+
+.app-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: var(--bg-secondary);
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.app-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.app-header h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  background: linear-gradient(135deg, #fff, var(--accent-dialogue));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+}
+
+.scene-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.scene-picker label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+select {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+}
+
+select:hover {
+  border-color: var(--accent-dialogue);
+}
+
+.scene-content {
+  padding: 2rem;
+  min-height: 60vh;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Общий стиль для блоков */
+.dialogue,
+.thought,
+.action,
+.choice,
+.transition {
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Диалог */
+.dialogue {
+  background: #0a0a15;
+  border-left: 4px solid var(--accent-dialogue);
+}
+
+.dialogue strong {
+  color: var(--accent-dialogue);
+  font-weight: 600;
+}
+
+/* Мысль */
+.thought {
+  background: #0f0e1a;
+  border-left: 4px solid var(--accent-thought);
+  font-style: italic;
+  color: #f0e6a0;
+}
+
+/* Действие */
+.action {
+  font-style: italic;
+  color: var(--accent-action);
+  background: none;
+  border-left: 2px solid var(--accent-action);
+}
+
+/* Выбор */
+.choice {
+  background: var(--accent-choice-bg);
+  border-left: 4px solid var(--accent-choice);
+  margin: 1rem 0;
+}
+
+.choice strong {
+  color: var(--accent-choice);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.choice ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.choice li {
+  margin: 0.5rem 0;
+  padding: 0.3rem 0.5rem;
+  background: #2a2418;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  display: inline-block;
+  width: auto;
+  border-left: 2px solid var(--accent-choice);
+}
+
+/* Переход */
+.transition {
+  text-align: center;
+  color: var(--accent-action);
+  font-size: 0.85rem;
+  border-top: 1px dashed var(--border-color);
+  border-bottom: 1px dashed var(--border-color);
+  border-radius: 0;
+  padding: 0.6rem;
+  margin: 0.5rem 0;
+}
+
+/* Метаданные сцены */
+.scene-metadata {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px dotted var(--border-color);
+}
+
+/* Footer */
+.app-footer {
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* предыдущие переменные и базовые стили остаются */
+
+.scene-content {
+  gap: 1.5rem; /* увеличил */
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+.choice ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+  margin-top: 8px;
+}
+.choice li {
+  display: block;
+  background: #2a2418;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-choice);
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+.choice li:hover {
+  background: #3a2e1e;
+}
+
+/* для select option хоть как-то */
+select {
+  accent-color: var(--accent-dialogue);
+}
+
+button {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--accent-dialogue);
+  border-color: var(--accent-dialogue);
+  color: #000;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Адаптивность */
+@media (max-width: 700px) {
+  .app-container {
+    border-radius: 1rem;
+  }
+  .app-header,
+  .scene-content,
+  .app-footer {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,42 @@
+/* ===== НАВИГАЦИОННАЯ ШАПКА (общая) ===== */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  padding: 0.6rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.9rem;
+}
+.top-nav a {
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.top-nav a:hover {
+  color: #4cc9f0;
+}
+.top-nav .home-link {
+  font-weight: 500;
+  background: rgba(255,255,255,0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+.top-nav .github-links {
+  display: flex;
+  gap: 1.2rem;
+}
+/* Для страницы плеера – сдвигаем основной контент вниз */
+body {
+  padding-top: 50px;
+}
+/* Для страницы главного меню, где шапка уже есть – не добавляем лишний отступ */

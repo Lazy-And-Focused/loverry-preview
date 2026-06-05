@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>loverry — плей-тест</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="all-scene.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
+  </head>
+  <body>
+    <div class="top-nav">
+      <a href="index.html" class="home-link">← На главную</a>
+      <div class="github-links">
+        <a href="https://github.com/Lazy-And-Focused" target="_blank" rel="noopener noreferrer">🐙 Lazy-And-Focused</a>
+        <a href="https://github.com/FOCKUSTY" target="_blank" rel="noopener noreferrer">🐙 FOCKUSTY</a>
+      </div>
+    </div>
+    <div class="app-container">
+      <header class="app-header">
+        <h1>loverry — интерактивный плей-тест</h1>
+        <div class="scene-picker">
+          <label for="sceneSelect">Сцена: </label>
+          <select id="sceneSelect"></select>
+        </div>
+      </header>
+      <main id="content" class="scene-content">
+        <div class="placeholder">Загрузка сцен...</div>
+      </main>
+      <footer class="app-footer">
+        <button id="prevSceneBtn" disabled>← Предыдущая</button>
+        <span id="sceneCounter"></span>
+        <button id="nextSceneBtn" disabled>Следующая →</button>
+      </footer>
+    </div>
+    <script src="all-scene.js"></script>
+  </body>
+</html>
