@@ -95,18 +95,20 @@ function renderScene(sceneId) {
       case "transition":
         const targetId = escapeHtml(node.target);
         nodeDiv.innerHTML = `<span class="transition-link" data-target="${targetId}">➡ Переход к сцене: ${targetId}</span>`;
-        nodeDiv.querySelector(".transition-link").addEventListener("click", (e) => {
-          const target = e.currentTarget.getAttribute("data-target");
-          if (scenes[target]) {
-            renderScene(target);
-            updateNavButtons();
-            updateSceneCounter();
-            document.getElementById("sceneSelect").value = target;
-            container.scrollIntoView({ behavior: "smooth", block: "start" });
-          } else {
-            alert(`Сцена ${target} не найдена`);
-          }
-        });
+        nodeDiv
+          .querySelector(".transition-link")
+          .addEventListener("click", (e) => {
+            const target = e.currentTarget.getAttribute("data-target");
+            if (scenes[target]) {
+              renderScene(target);
+              updateNavButtons();
+              updateSceneCounter();
+              document.getElementById("sceneSelect").value = target;
+              container.scrollIntoView({ behavior: "smooth", block: "start" });
+            } else {
+              alert(`Сцена ${target} не найдена`);
+            }
+          });
         break;
 
       // ---- НОВЫЕ ТИПЫ УЗЛОВ ----
@@ -147,12 +149,14 @@ function getCurrentIndex() {
 
 function updateNavButtons() {
   document.getElementById("prevSceneBtn").disabled = getCurrentIndex() <= 0;
-  document.getElementById("nextSceneBtn").disabled = getCurrentIndex() >= sceneIds.length - 1;
+  document.getElementById("nextSceneBtn").disabled =
+    getCurrentIndex() >= sceneIds.length - 1;
 }
 
 function updateSceneCounter() {
   const idx = getCurrentIndex();
-  document.getElementById("sceneCounter").textContent = `Сцена ${idx + 1} из ${sceneIds.length}`;
+  document.getElementById("sceneCounter").textContent =
+    `Сцена ${idx + 1} из ${sceneIds.length}`;
 }
 
 function prevScene() {

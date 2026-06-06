@@ -1,14 +1,25 @@
 <!doctype html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
     <title>loverry — главное меню</title>
     <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       body {
         background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          sans-serif;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -23,14 +34,14 @@
         top: 0;
         left: 0;
         right: 0;
-        background: rgba(0,0,0,0.85);
+        background: rgba(0, 0, 0, 0.85);
         backdrop-filter: blur(12px);
         padding: 0.6rem 1.5rem;
         display: flex;
         justify-content: flex-end;
         align-items: center;
         z-index: 1000;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         font-size: 0.9rem;
       }
       .top-nav a {
@@ -47,12 +58,12 @@
       .menu-container {
         max-width: 800px;
         width: 100%;
-        background: rgba(0,0,0,0.6);
+        background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(8px);
         border-radius: 2rem;
         padding: 2rem;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         margin-top: 20px;
       }
       h1 {
@@ -76,7 +87,7 @@
         margin-bottom: 2rem;
       }
       .mode-btn {
-        background: rgba(30,30,50,0.8);
+        background: rgba(30, 30, 50, 0.8);
         border: 1px solid #2c2c3e;
         border-radius: 2rem;
         padding: 0.5rem 1.2rem;
@@ -90,7 +101,7 @@
         background: #4cc9f0;
         border-color: #4cc9f0;
         color: #000;
-        box-shadow: 0 0 8px rgba(76,201,240,0.4);
+        box-shadow: 0 0 8px rgba(76, 201, 240, 0.4);
       }
       .mode-btn:hover:not(.active) {
         background: #2c2c4e;
@@ -103,7 +114,7 @@
         margin-bottom: 2rem;
       }
       .scene-btn {
-        background: rgba(30,30,50,0.9);
+        background: rgba(30, 30, 50, 0.9);
         border: 1px solid #2c2c3e;
         border-radius: 1rem;
         padding: 0.8rem 1.2rem;
@@ -142,110 +153,140 @@
         margin-top: 1rem;
       }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-  <div class="top-nav">
-    <div>
-      <a href="https://github.com/Lazy-And-Focused" target="_blank" rel="noopener noreferrer">🐙 Lazy-And-Focused</a>
-      <a href="https://github.com/FOCKUSTY" target="_blank" rel="noopener noreferrer">🐙 FOCKUSTY</a>
+    <div class="top-nav">
+      <div>
+        <a
+          href="https://github.com/Lazy-And-Focused"
+          target="_blank"
+          rel="noopener noreferrer"
+          >🐙 Lazy-And-Focused</a
+        >
+        <a
+          href="https://github.com/FOCKUSTY"
+          target="_blank"
+          rel="noopener noreferrer"
+          >🐙 FOCKUSTY</a
+        >
+      </div>
     </div>
-  </div>
-  <div class="menu-container">
-    <h1>loverry</h1>
-    <div class="sub">интерактивный плей-тест</div>
+    <div class="menu-container">
+      <h1>loverry</h1>
+      <div class="sub">интерактивный плей-тест</div>
 
-    <div class="mode-selector">
-      <button id="modePreview" class="mode-btn active">🎮 Полный режим (preview)</button>
-      <button id="modeAllScene" class="mode-btn">📖 Текстовый режим (all-scene)</button>
+      <div class="mode-selector">
+        <button id="modePreview" class="mode-btn active">
+          🎮 Полный режим (preview)
+        </button>
+        <button id="modeAllScene" class="mode-btn">
+          📖 Текстовый режим (all-scene)
+        </button>
+      </div>
+
+      <div class="scene-list" id="sceneList">
+        <button class="scene-btn start-default" data-scene="scene_h1_a1_d1_o1">
+          ▶ Начать с первой сцены
+        </button>
+        <div style="margin: 0.5rem 0 0.2rem 0; font-size: 0.8rem; color: #aaa">
+          — или выберите конкретную сцену —
+        </div>
+      </div>
+
+      <footer>
+        ⚡ Выборы и ветвления работают в интерактивном режиме.<br />
+        Для отладки используйте консоль браузера (F12).
+      </footer>
     </div>
 
-    <div class="scene-list" id="sceneList">
-      <button class="scene-btn start-default" data-scene="scene_h1_a1_d1_o1">▶ Начать с первой сцены</button>
-      <div style="margin: 0.5rem 0 0.2rem 0; font-size:0.8rem; color:#aaa;">— или выберите конкретную сцену —</div>
-    </div>
+    <script>
+      let currentMode = "preview";
 
-    <footer>
-      ⚡ Выборы и ветвления работают в интерактивном режиме.<br>
-      Для отладки используйте консоль браузера (F12).
-    </footer>
-  </div>
-
-  <script>
-    let currentMode = 'preview';
-
-    async function loadSceneIds() {
-      try {
-        const response = await fetch('/loverry-preview/scenes/scenes.json');
-        const text = await response.text();
-        let data;
-        if (text[0] !== '{') {
-          const decompressed = LZString.decompressFromBase64(text);
-          data = JSON.parse(decompressed);
-        } else {
-          data = JSON.parse(text);
+      async function loadSceneIds() {
+        try {
+          const response = await fetch("/loverry-preview/scenes/scenes.json");
+          const text = await response.text();
+          let data;
+          if (text[0] !== "{") {
+            const decompressed = LZString.decompressFromBase64(text);
+            data = JSON.parse(decompressed);
+          } else {
+            data = JSON.parse(text);
+          }
+          return Object.keys(data).sort((a, b) =>
+            a.localeCompare(b, undefined, { numeric: true }),
+          );
+        } catch (e) {
+          console.error("Не удалось загрузить сцены", e);
+          return [];
         }
-        return Object.keys(data).sort((a,b) => a.localeCompare(b, undefined, { numeric: true }));
-      } catch(e) {
-        console.error('Не удалось загрузить сцены', e);
-        return [];
       }
-    }
 
-    function setMode(mode) {
-      currentMode = mode;
-      localStorage.setItem('loverry_player_mode', mode);
-      const btnPreview = document.getElementById('modePreview');
-      const btnAll = document.getElementById('modeAllScene');
-      if (mode === 'preview') {
-        btnPreview.classList.add('active');
-        btnAll.classList.remove('active');
-      } else {
-        btnAll.classList.add('active');
-        btnPreview.classList.remove('active');
+      function setMode(mode) {
+        currentMode = mode;
+        localStorage.setItem("loverry_player_mode", mode);
+        const btnPreview = document.getElementById("modePreview");
+        const btnAll = document.getElementById("modeAllScene");
+        if (mode === "preview") {
+          btnPreview.classList.add("active");
+          btnAll.classList.remove("active");
+        } else {
+          btnAll.classList.add("active");
+          btnPreview.classList.remove("active");
+        }
       }
-    }
 
-    function launchScene(sceneId) {
-      const targetUrl = currentMode === 'preview' 
-        ? `preview.html?scene=${encodeURIComponent(sceneId)}`
-        : `all-scene.html?scene=${encodeURIComponent(sceneId)}`;
-      window.location.href = targetUrl;
-    }
-
-    async function buildMenu() {
-      const ids = await loadSceneIds();
-      const container = document.getElementById('sceneList');
-      if (!ids.length) {
-        container.innerHTML += '<div class="scene-btn" style="background:#aa2e2e;">❌ Ошибка: scenes.json не найден</div>';
-        return;
+      function launchScene(sceneId) {
+        const targetUrl =
+          currentMode === "preview"
+            ? `preview.html?scene=${encodeURIComponent(sceneId)}`
+            : `all-scene.html?scene=${encodeURIComponent(sceneId)}`;
+        window.location.href = targetUrl;
       }
-      const firstBtn = container.querySelector('.start-default');
-      const newFirstBtn = firstBtn.cloneNode(true);
-      firstBtn.parentNode.replaceChild(newFirstBtn, firstBtn);
-      newFirstBtn.addEventListener('click', () => launchScene(ids[0]));
 
-      for (const id of ids) {
-        if (container.querySelector(`.scene-btn[data-scene="${id}"]`)) continue;
-        const btn = document.createElement('button');
-        btn.className = 'scene-btn';
-        btn.setAttribute('data-scene', id);
-        btn.innerHTML = `<span>${id}</span><small>перейти →</small>`;
-        btn.addEventListener('click', () => launchScene(id));
-        container.appendChild(btn);
+      async function buildMenu() {
+        const ids = await loadSceneIds();
+        const container = document.getElementById("sceneList");
+        if (!ids.length) {
+          container.innerHTML +=
+            '<div class="scene-btn" style="background:#aa2e2e;">❌ Ошибка: scenes.json не найден</div>';
+          return;
+        }
+        const firstBtn = container.querySelector(".start-default");
+        const newFirstBtn = firstBtn.cloneNode(true);
+        firstBtn.parentNode.replaceChild(newFirstBtn, firstBtn);
+        newFirstBtn.addEventListener("click", () => launchScene(ids[0]));
+
+        for (const id of ids) {
+          if (container.querySelector(`.scene-btn[data-scene="${id}"]`))
+            continue;
+          const btn = document.createElement("button");
+          btn.className = "scene-btn";
+          btn.setAttribute("data-scene", id);
+          btn.innerHTML = `<span>${id}</span><small>перейти →</small>`;
+          btn.addEventListener("click", () => launchScene(id));
+          container.appendChild(btn);
+        }
       }
-    }
 
-    function init() {
-      const savedMode = localStorage.getItem('loverry_player_mode');
-      setMode(savedMode === 'all-scene' ? 'all-scene' : 'preview');
-      document.getElementById('modePreview').addEventListener('click', () => setMode('preview'));
-      document.getElementById('modeAllScene').addEventListener('click', () => setMode('all-scene'));
-      buildMenu();
-    }
+      function init() {
+        const savedMode = localStorage.getItem("loverry_player_mode");
+        setMode(savedMode === "all-scene" ? "all-scene" : "preview");
+        document
+          .getElementById("modePreview")
+          .addEventListener("click", () => setMode("preview"));
+        document
+          .getElementById("modeAllScene")
+          .addEventListener("click", () => setMode("all-scene"));
+        buildMenu();
+      }
 
-    init();
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
+      init();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
   </body>
 </html>
