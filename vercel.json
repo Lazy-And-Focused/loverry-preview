@@ -1,9 +1,5 @@
 {
   "installCommand": "pnpm install",
   "buildCommand": "pnpm run build",
-  "outputDirectory": "apps/web-app/dist/web-app",
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/server/server.mjs" }
-  ]
+  "outputDirectory": "apps/web-app/dist/web-app"
 }
