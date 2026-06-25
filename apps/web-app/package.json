@@ -12,7 +12,6 @@
   },
   "private": true,
   "dependencies": {
-    "@loverry/utils": "workspace:^",
     "@angular/common": "^21.1.0",
     "@angular/compiler": "^21.1.0",
     "@angular/core": "^21.1.0",

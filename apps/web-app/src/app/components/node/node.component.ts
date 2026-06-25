@@ -14,26 +14,19 @@ import {
   SerializedSceneNode,
   SerializedTransitionNode,
 } from "@loverry/exporter";
-import { Enumeration } from "@loverry/utils";
 
-type Scenes = {
-  [P in SerializedSceneNode["type"]]: P;
-};
+const SCENES = {
+  action: "action",
+  background: "background",
+  character: "character",
+  choice: "choice",
+  dialogue: "dialogue",
+  effect: "effect",
+  system: "system",
+  thought: "thought",
+  transition: "transition",
+} as const;
 
-const { enumeration: SceneTypes, ...SceneTypesEnumeration } =
-  new Enumeration<Scenes>({
-    action: "action",
-    background: "background",
-    character: "character",
-    choice: "choice",
-    dialogue: "dialogue",
-    effect: "effect",
-    system: "system",
-    thought: "thought",
-    transition: "transition",
-  });
-
-type SceneTypes = typeof SceneTypesEnumeration.type;
 
 @Component({
   selector: "scene-node",
@@ -44,35 +37,35 @@ export class Node {
   private neverTemplate = viewChild.required<TemplateRef<unknown>>("never");
 
   private actionTemplate = viewChild.required<TemplateRef<unknown>>(
-    SceneTypes.action,
+    SCENES.action,
   );
   private dialogueTemplate = viewChild.required<TemplateRef<unknown>>(
-    SceneTypes.dialogue,
+    SCENES.dialogue,
   );
   private thoughtTemplate = viewChild.required<TemplateRef<unknown>>(
-    SceneTypes.thought,
+    SCENES.thought,
   );
   private choiceTemplate = viewChild.required<TemplateRef<unknown>>(
-    SceneTypes.choice,
+    SCENES.choice,
   );
   private transitionTemplate = viewChild.required<TemplateRef<unknown>>(
-    SceneTypes.transition,
+    SCENES.transition,
   );
   private backgroundTemplate = viewChild.required<TemplateRef<unknown>>(
-    SceneTypes.background,
+    SCENES.background,
   );
   private characterTemplate = viewChild.required<TemplateRef<unknown>>(
-    SceneTypes.character,
+    SCENES.character,
   );
   private effectTemplate = viewChild.required<TemplateRef<unknown>>(
-    SceneTypes.effect,
+    SCENES.effect,
   );
   private systemTemplate = viewChild.required<TemplateRef<unknown>>(
-    SceneTypes.system,
+    SCENES.system,
   );
 
   private readonly templates: Record<
-    SceneTypes,
+    SerializedSceneNode["type"],
     Signal<TemplateRef<any>> | undefined
   > = {
     action: this.actionTemplate,

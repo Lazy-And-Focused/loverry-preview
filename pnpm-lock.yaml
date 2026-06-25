@@ -138,9 +138,6 @@ importers:
       '@loverry/registries':
         specifier: workspace:^
         version: link:../../packages/registries
-      '@loverry/utils':
-        specifier: workspace:^
-        version: link:../../packages/utils
       '@ng-icons/bootstrap-icons':
         specifier: ^33.2.3
         version: 33.3.0
