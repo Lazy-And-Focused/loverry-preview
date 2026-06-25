@@ -1,14 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "dist/web-app/browser/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "dist/web-app/server/server.mjs",
-      "use": "@vercel/node"
-    }
-  ],
   "routes": [
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
     { "src": "/(.*)", "dest": "dist/web-app/server/server.mjs" }
