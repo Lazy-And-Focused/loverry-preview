@@ -4,6 +4,6 @@
   "outputDirectory": "apps/web-app/dist/web-app",
   "routes": [
     { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/browser/index.html" }
+    { "src": "/(.*)", "dest": "/browser" }
   ]
 }
