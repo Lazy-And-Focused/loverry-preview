@@ -9,7 +9,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "apps/web-app/dist/web-app/browser"
+      "dest": "server/server.mjs"
     }
   ]
 }
