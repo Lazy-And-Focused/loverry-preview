@@ -1,0 +1,15 @@
+animations:
+  rain:
+    display_name: "Дождь"
+    type: loop
+    speed: 0.8
+    parameters:
+      opacity: 0.6
+  waves:
+    display_name: "Волны"
+    type: loop
+    speed: 0.5
+  thunder_flash:
+    display_name: "Вспышка грома"
+    type: once
+    duration: 0.3

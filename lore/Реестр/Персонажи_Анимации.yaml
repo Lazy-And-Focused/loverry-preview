@@ -1,0 +1,18 @@
+animations:
+  idle:
+    display_name: "Обычное стояние"
+    type: loop
+    duration: 2.0
+    sprite_sheet:
+      columns: 4
+      rows: 1
+      frame_duration: 0.5
+  wave:
+    display_name: "Машет рукой"
+    type: once
+    duration: 1.5
+    easing: ease-out
+  talk:
+    display_name: "Говорит"
+    type: loop
+    speed: 1.2
