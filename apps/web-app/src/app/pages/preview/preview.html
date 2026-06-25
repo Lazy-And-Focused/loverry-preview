@@ -1,0 +1,20 @@
+<main
+  class="flex-1 flex flex-col h-full items-center justify-center
+    gap-4"
+>
+  @let node = currentNodes()[currentNodeIndex()];
+  @if (node) {
+    <scene-node [node]="node" (changeScene)="changeScene($event)" />
+  }
+
+  <button
+    (click)="nextNode()"
+    class="cursor-pointer rounded-full border border-white/20
+      bg-transparent px-5 py-2 text-sm font-medium text-(--fg-default)
+      transition hover:border-(--accent-blue) hover:bg-(--accent-blue)
+      hover:text-(--fg-dark) disabled:cursor-not-allowed
+      disabled:opacity-40"
+  >
+    Далее →
+  </button>
+</main>

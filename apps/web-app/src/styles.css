@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import "tailwindcss";
+
+:root {
+  /* === Фоны === */
+  --bg-primary: #0f0f1a;
+  --bg-secondary: #1a1a2e;
+  --bg-card: rgba(26, 26, 46, 0.85);
+  --bg-glass: rgba(255, 255, 255, 0.05);
+  --bg-black-glass: rgba(0, 0, 0, 0.5);
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+  --bg-elevated: #25253f;
+
+  /* === Текст === */
+  --fg-default: #f0f0f0;
+  --fg-muted: #a0a0b0;
+  --fg-dark: #0a0a0a;
+  --fg-inverse: #0f0f1a;
+
+  /* === Акценты === */
+  --accent-blue: #4cc9f0;
+  --accent-gold: #f2c94c;
+  --accent-orange: #f39c12;
+  --accent-grey: #95a5a6;
+  --accent-red: #e63946;
+  --accent-green: #2ecc71;
+
+  /* === Кнопки === */
+  --btn-primary: #4cc9f0;
+  --btn-primary-hover: #3db8d6;
+  --btn-secondary-border: #4cc9f0;
+  --btn-danger: #e63946;
+
+  /* === Размеры шрифтов === */
+  --fs-h1: 36px;
+  --fs-h2: 32px;
+  --fs-h3: 24px;
+  --fs-h4: 20px;
+  --fs-base: 16px;
+  --fs-mini: 14px;
+
+  /* === Тени === */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 15px rgba(76, 201, 240, 0.4);
+
+  /* === Анимации === */
+  --transition-fast: 0.1s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
+
+  /* === Радиусы === */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+}
+
+@layer base {
+  @import "./reset.css";
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--fg-default);
+    font-size: var(--fs-base);
+  }
+}
+
+@layer components {
+  .page-center {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .card-glass {
+    background: var(--bg-card);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--bg-glass);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-primary {
+    background-color: var(--btn-primary);
+    color: var(--fg-dark);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    transition: all var(--transition-base);
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--btn-primary-hover);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--accent-blue);
+    border: 1px solid var(--btn-secondary-border);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-base);
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(76, 201, 240, 0.1);
+  }
+
+  .no-scroll {
+    overflow: hidden !important;
+  }
+
+  .scrollable {
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+
+  .scrollable::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollable::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollable::-webkit-scrollbar-thumb {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+  }
+}

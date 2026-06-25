@@ -1,0 +1,10 @@
+{
+  "routes": {
+    "/": {},
+    "/nolayout": {},
+    "/nolayout/preview": {},
+    "/nolayout/scenes": {},
+    "/preview": {},
+    "/scenes": {}
+  }
+}

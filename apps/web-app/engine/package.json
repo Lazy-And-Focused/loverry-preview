@@ -1,0 +1,20 @@
+{
+  "name": "@loverry/engine",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@loverry/ast": "workspace:*",
+    "@loverry/expressions": "workspace:*",
+    "@types/node": "^25.9.1",
+    "lz-string": "^1.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3",
+    "vitest": "^0.34.0"
+  }
+}

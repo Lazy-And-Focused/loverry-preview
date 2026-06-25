@@ -1,0 +1,51 @@
+<div class="flex flex-col min-h-screen">
+  <header
+    class="flex h-[6em] w-full items-center justify-between gap-2
+      rounded-b-2xl border border-b-2 border-white/5
+      bg-(--bg-secondary) px-4 py-2 shadow-md"
+  >
+    <div class="flex flex-col items-center">
+      <h2>Loverry</h2>
+      <div class="flex flex-row gap-2">
+        <span class="text-(--fs-mini)">Роман от LAF</span>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <span>Интерактивный</span>
+      <span class="text-(--fs-mini)">публичный</span>
+      <span>play-test</span>
+    </div>
+  </header>
+
+  <router-outlet></router-outlet>
+
+  <footer
+    class="flex w-full gap-4 rounded-t-2xl border border-white/5
+      bg-(--bg-secondary) px-2 py-4"
+  >
+    <div class="flex flex-col items-center py-1 pl-2">
+      <span> © 2025-{{ currentYear }} Lazy And Focused </span>
+      <span class="text-(--fs-mini)"> Все права залафлены </span>
+
+      <div class="flex items-center justify-center gap-1">
+        <ng-icon size="20" name="heroGlobeAlt" />
+        <ng-icon size="20" name="bootstrapGithub" />
+        <ng-icon size="20" name="bootstrapTelegram" />
+      </div>
+    </div>
+
+    <div class="flex-col py-1">
+      <div class="flex flex-col items-center justify-center">
+        <span>FOCKUSTY</span>
+        <span class="text-(--fs-mini)">Сценарист</span>
+      </div>
+
+      <div class="flex items-center justify-center gap-1">
+        <ng-icon size="20" name="heroGlobeAlt" />
+        <ng-icon size="20" name="bootstrapGithub" />
+        <ng-icon size="20" name="bootstrapTelegram" />
+      </div>
+    </div>
+  </footer>
+</div>

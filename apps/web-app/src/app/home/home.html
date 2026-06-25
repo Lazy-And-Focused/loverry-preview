@@ -1,0 +1,83 @@
+<main
+  class="flex-1 flex flex-col h-full items-center justify-center
+    gap-4"
+>
+  <section
+    class="items-center gap-2 rounded-2xl border border-white/5
+      bg-(--bg-secondary) px-4 py-2 shadow-md"
+  >
+    <h2>Роман от Lazy And Focused</h2>
+    <div class="flex flex-col">
+      <span>
+        <span class="text-(--accent-blue)">Loverry</span> рассказывает
+        о четырёх людях
+      </span>
+      <span> у каждого из которых есть свои проблемы </span>
+      <span> судьбы которых переплетутся по ходу сюжета... </span>
+    </div>
+  </section>
+
+  <section class="flex flex-wrap justify-center gap-4">
+    @for (character of characters(); track character.name) {
+      <div
+        class="flex max-w-28 min-w-24 cursor-pointer flex-col
+          items-center gap-2 rounded-lg border border-(--bg-secondary)
+          px-2 py-1 transition-colors duration-300
+          hover:bg-(--bg-secondary)"
+        (click)="openCharacterModal(character)"
+      >
+        <div
+          class="h-10 w-10 shrink-0 rounded-full bg-(--accent-blue)
+            transition-opacity hover:opacity-80"
+        ></div>
+
+        <div
+          class="flex flex-col items-center text-center leading-tight"
+        >
+          <span>{{ character.name }}</span>
+          <span>{{ character.surname }}</span>
+        </div>
+      </div>
+    }
+  </section>
+
+  <section class="flex w-full max-w-md flex-col items-center gap-4">
+    <div class="w-full">
+      <a
+        routerLink="/preview"
+        class="flex w-full flex-col rounded-2xl bg-(--accent-blue)
+          px-6 py-4 text-center text-lg font-bold text-black
+          transition-all hover:scale-[1.02]"
+      >
+        <span> ▶ Начать игру (BETA) </span>
+        <span class="text-(--fs-mini)"
+          >(формат визуального романа)</span
+        >
+      </a>
+    </div>
+
+    <span class="text-(--fs-mini)">Или</span>
+
+    <div
+      class="flex flex-col items-center gap-1 rounded-xl border
+        border-white/5 bg-(--bg-card) px-4 py-2 backdrop-blur-sm"
+    >
+      <a
+        routerLink="/scenes"
+        class="flex flex-col items-center text-base text-(--fg-muted)
+          transition-colors hover:border-white/30 hover:text-white"
+      >
+        <span>Читать в виде книги</span>
+        <span class="text-(--fs-mini)">(только текст)</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+@if (characterModalOpened() && selectedCharacter()) {
+  <modal-character
+    [character]="selectedCharacter()!"
+    (close)="closeCharacterModal()"
+  >
+  </modal-character>
+}

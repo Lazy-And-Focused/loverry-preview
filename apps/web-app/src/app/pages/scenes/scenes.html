@@ -1,0 +1,65 @@
+<div
+  class="page mx-auto my-12 max-w-225 rounded-2xl border
+    border-white/5 bg-(--bg-secondary) shadow-(--shadow-lg)"
+>
+  <div class="border-b border-white/10 bg-black/20 px-8 py-6">
+    <div class="flex flex-wrap items-center gap-3">
+      <label
+        for="sceneSelect"
+        class="text-sm font-medium text-(--fg-muted)"
+        >Сцена:</label
+      >
+      <select
+        id="sceneSelect"
+        [ngModel]="currentSceneId()"
+        (change)="select($event)"
+        class="cursor-pointer rounded-full border border-white/10
+          bg-(--bg-primary) px-4 py-2 font-sans text-sm
+          text-(--fg-default) transition outline-none
+          hover:border-(--accent-blue)"
+      >
+        @for (id of sceneIds(); track id) {
+          <option [value]="id">{{ id }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <main #main class="flex flex-col gap-6 bg-(--bg-secondary) p-8">
+    @for (node of currentNodes(); track node.id) {
+      <scene-node [node]="node" (changeScene)="changeScene($event)" />
+    }
+  </main>
+
+  <div
+    class="flex items-center justify-between border-t border-white/10
+      bg-black/20 px-8 py-4"
+  >
+    @let buttonClassName =
+      "cursor-pointer rounded-full border border-white/20\
+        bg-transparent px-5 py-2 text-sm font-medium\
+        text-(--fg-default) transition hover:border-(--accent-blue)\
+        hover:bg-(--accent-blue) hover:text-(--fg-dark)\
+        disabled:cursor-not-allowed disabled:opacity-40";
+
+    <button
+      (click)="previousScene()"
+      [disabled]="currentSceneIndex() === 0"
+      [className]="buttonClassName"
+    >
+      ← Предыдущая
+    </button>
+
+    <span class="text-sm text-(--fg-muted)">
+      Сцена {{ currentSceneIndex() + 1 }} из {{ sceneIds().length }}
+    </span>
+
+    <button
+      (click)="nextScene()"
+      [disabled]="currentSceneIndex() === sceneIds().length - 1"
+      [className]="buttonClassName"
+    >
+      Следующая →
+    </button>
+  </div>
+</div>

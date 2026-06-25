@@ -1,0 +1,25 @@
+{
+  "name": "@loverry/parser",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@loverry/enums": "workspace:*",
+    "@loverry/utils": "workspace:*",
+    "@loverry/ast": "workspace:*",
+    "@loverry/expressions": "workspace:*",
+    "@loverry/lexer": "workspace:*",
+    "@loverry/registries": "workspace:*",
+    "@loverry/validator": "workspace:*",
+    "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "typescript": "^6.0.3",
+    "vitest": "^0.34.0"
+  }
+}

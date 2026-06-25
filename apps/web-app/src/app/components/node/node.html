@@ -1,0 +1,89 @@
+<ng-template #never> Type: {{ node.type }} </ng-template>
+
+<ng-template #action *ngIf="node.type === 'action'">
+  <div
+    class="border-l-2 border-(--accent-grey) p-3 text-(--accent-grey)
+      italic"
+  >
+    <em>{{ formatText(node.text!) }}</em>
+  </div>
+</ng-template>
+
+<ng-template #dialogue *ngIf="node.type === 'dialogue'">
+  <div
+    class="animate-[fade-up_0.3s_ease-out] rounded-xl border-l-4
+      border-(--accent-blue) bg-(--bg-elevated) p-3"
+  >
+    <strong class="font-semibold text-(--accent-blue)">{{
+      formatText(node.character)
+    }}</strong>
+    @if (node.emotion) {
+      <span class="text-sm text-(--fg-muted)">
+        ({{ formatText(node.emotion) }})</span
+      >
+    }
+    : {{ formatText(node.text) }}
+  </div>
+</ng-template>
+
+<ng-template #thought *ngIf="node.type === 'thought'">
+  <div
+    class="rounded-xl border-l-4 border-(--accent-gold)
+      bg-(--bg-elevated) p-3 text-yellow-200 italic"
+  >
+    <em
+      >({{ formatText(node.character!) }} мысленно):
+      {{ formatText(node.text!) }}</em
+    >
+  </div>
+</ng-template>
+
+<ng-template #choice *ngIf="node.type === 'choice'">
+  <div
+    class="my-4 rounded-xl border-l-4 border-(--accent-orange)
+      bg-amber-950/40 p-4"
+  >
+    <strong class="mb-2 block font-semibold text-(--accent-orange)"
+      >Выбор:</strong
+    >
+    <ul class="flex flex-col gap-2 pl-4">
+      @for (opt of node.options; track opt.text) {
+        <li
+          class="inline-block w-auto cursor-pointer rounded-lg
+            border-l-2 border-(--accent-orange) bg-amber-900/30 px-4
+            py-2 text-sm transition hover:bg-amber-800/50"
+        >
+          {{ formatText(opt.text) }}
+        </li>
+      }
+    </ul>
+  </div>
+</ng-template>
+
+<ng-template #transition *ngIf="node.type === 'transition'">
+  <div
+    class="cursor-pointer text-center py-2 px-4 border-dashed
+      border-y-2 border-(--accent-grey) text-(--accent-grey)"
+    (click)="changeScene.emit(node.target)"
+  >
+    <span>➡ Переход к сцене: {{ formatText(node.target!) }}</span>
+  </div>
+</ng-template>
+
+<ng-template #background *ngIf="node.type === 'background'">
+  {{ node.type }}
+</ng-template>
+
+<ng-template #character *ngIf="node.type === 'character'">
+  {{ node.type }}
+</ng-template>
+
+<ng-template #effect *ngIf="node.type === 'effect'">
+  {{ node.type }}
+</ng-template>
+
+<ng-template #system *ngIf="node.type === 'system'">
+  {{ node.type }}
+</ng-template>
+
+<ng-container [ngTemplateOutlet]="content()"></ng-container>

@@ -1,0 +1,49 @@
+<div
+  class="fixed inset-0 z-999 flex items-center justify-center
+    backdrop-blur-sm"
+  (click)="onOverlayClick($event)"
+>
+  <div
+    class="relative w-full max-w-md rounded-2xl border border-white/20
+      bg-(--bg-black-glass) p-8 shadow-(--shadow-lg) backdrop-blur-md"
+  >
+    <button
+      class="absolute top-3 right-4 cursor-pointer text-2xl
+        text-(--fg-muted) transition-colors hover:text-(--fg-default)
+        active:scale-95"
+      (click)="onClose()"
+    >
+      ×
+    </button>
+
+    <div class="flex flex-col items-center gap-4">
+      <div
+        class="flex h-20 w-20 items-center justify-center rounded-full
+          bg-(--accent-blue) text-2xl font-bold text-(--fg-dark)"
+      >
+        {{ character.name[0] }}
+      </div>
+
+      <div class="text-center">
+        <h3 class="font-['Shantell_Sans'] font-bold text-(--fs-h3)">
+          {{ character.name }} {{ character.surname }}
+        </h3>
+        <p class="mt-1 text-(--fs-mini)">Персонаж истории</p>
+      </div>
+
+      <div class="my-2 h-px w-full bg-white/20"></div>
+
+      <div
+        class="text-center text-sm leading-relaxed text-(--fg-muted)"
+      >
+        @if (character.description) {
+          <p>
+            {{ character.site_description || character.description }}
+          </p>
+        } @else {
+          <p>Описание этого персонажа пока скрыто туманом...</p>
+        }
+      </div>
+    </div>
+  </div>
+</div>
