@@ -2,11 +2,12 @@
   "installCommand": "pnpm install",
   "buildCommand": "pnpm run build",
   "outputDirectory": "apps/web-app/dist/web-app",
-  "functions": {
-    "server/server.mjs": {
-      "runtime": "nodejs20.x"
+  "builds": [
+    {
+      "src": "server/server.mjs",
+      "use": "@vercel/node"
     }
-  },
+  ],
   "routes": [
     { "handle": "filesystem" },
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
