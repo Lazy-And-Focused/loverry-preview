@@ -3,7 +3,7 @@
   "buildCommand": "pnpm run build",
   "outputDirectory": "apps/web-app/dist/web-app",
   "routes": [
-    { "src": "/assets/(.*)", "dest": "/assets/$1" },
-    { "src": "/(.*)", "dest": "dist/web-app/server/server.mjs" }
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/server/server.mjs" }
   ]
 }
