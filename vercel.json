@@ -2,14 +2,14 @@
   "installCommand": "pnpm install",
   "buildCommand": "pnpm run build",
   "outputDirectory": "apps/web-app/dist/web-app",
-  "routes": [
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "server/server.mjs"
+  "functions": {
+    "server/server.mjs": {
+      "runtime": "nodejs20.x"
     }
+  },
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/(.*)", "dest": "/server/server.mjs" }
   ]
 }
