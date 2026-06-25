@@ -1,5 +1,25 @@
 {
   "installCommand": "pnpm install",
   "buildCommand": "pnpm run build",
-  "outputDirectory": "apps/web-app/dist/web-app"
+  "outputDirectory": "apps/web-app/dist/web-app",
+  "builds": [
+    {
+      "src": "apps/web-app/dist/web-app/browser/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "apps/web-app/dist/web-app/server/server.mjs",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "dist/web-app/server/server.mjs"
+    }
+  ]
 }
