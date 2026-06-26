@@ -3,16 +3,13 @@
   "builds": [
     {
       "src": "apps/web-app/src/main.ts",
-      "use": "@vercel/webpack",
-      "config": {
-        "webpackConfig": "apps/web-app/webpack.config.js"
-      }
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/dist/apps/web-app/browser/index.html"
+      "dest": "apps/web-app/dist/web-app/browser/index.html"
     }
   ]
 }
