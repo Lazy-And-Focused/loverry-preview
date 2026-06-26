@@ -2,7 +2,7 @@ import { SerializedScenes } from "@/services/scenes.loader";
 import { ScenesService } from "@/services/scenes.service";
 import { Component, inject, signal } from "@angular/core";
 
-import { SerializedSceneNode } from "@loverry/exporter";
+import { SerializedSceneNode } from "@/types/exporter";
 import { Node } from "@/app/components/node/node.component";
 
 @Component({

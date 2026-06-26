@@ -1,4 +1,4 @@
-import type { CharacterRegistry } from "@loverry/ast";
+import type { CharacterRegistry } from "@/types/ast";
 
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CommonModule } from "@angular/common";

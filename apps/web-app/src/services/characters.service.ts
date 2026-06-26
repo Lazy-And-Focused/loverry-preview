@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, makeStateKey, TransferState } from "@angular/core";
-import { CharacterRegistry } from "@loverry/ast";
+import { CharacterRegistry } from "@/types/ast";
 
 import { map, from, of } from "rxjs";
 

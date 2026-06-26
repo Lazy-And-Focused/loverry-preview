@@ -1,4 +1,4 @@
-import type { SerializedScene } from "@loverry/exporter";
+import type { SerializedScene } from "@/types/exporter";
 import type { SerializedScenes } from "./scenes.loader";
 import type { StateKey } from "@angular/core";
 import type { Observable } from "rxjs";

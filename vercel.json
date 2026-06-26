@@ -1,8 +1,0 @@
-{
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "apps/web-app/dist/web-app/browser/index.html"
-    }
-  ]
-}

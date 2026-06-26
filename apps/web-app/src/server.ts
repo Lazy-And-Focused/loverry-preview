@@ -6,7 +6,7 @@ import {
   writeResponseToNodeResponse,
 } from "@angular/ssr/node";
 
-import { RegistryLoader } from "@loverry/registries";
+import { RegistryLoader } from "./utils/registries.loader";
 
 import { environment } from "./environments/environment.development";
 import { ScenesLoader } from "./services/scenes.loader";

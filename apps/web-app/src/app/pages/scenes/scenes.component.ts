@@ -1,5 +1,5 @@
 import type { SerializedScenes } from "@/services/scenes.loader";
-import type { SerializedSceneNode } from "@loverry/exporter";
+import type { SerializedSceneNode } from "@/types/exporter";
 import { ScenesService } from "@/services/scenes.service";
 
 import { CommonModule } from "@angular/common";

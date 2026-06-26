@@ -13,7 +13,7 @@ import {
 import {
   SerializedSceneNode,
   SerializedTransitionNode,
-} from "@loverry/exporter";
+} from "@/types/exporter";
 
 const SCENES = {
   action: "action",

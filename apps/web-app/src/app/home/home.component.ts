@@ -1,4 +1,4 @@
-import type { CharacterRegistry } from "@loverry/ast";
+import type { CharacterRegistry } from "@/types/ast";
 
 import { Component, inject, signal } from "@angular/core";
 import { RouterLink } from "@angular/router";

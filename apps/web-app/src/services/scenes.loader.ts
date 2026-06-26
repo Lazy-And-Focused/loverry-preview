@@ -2,7 +2,7 @@ import { readFile } from "fs/promises";
 import { join } from "path";
 
 import { decompressFromBase64 } from "lz-string";
-import { SerializedScene } from "@loverry/exporter";
+import { SerializedScene } from "@/types/exporter";
 
 export type SerializedScenes = Record<string, SerializedScene>;
 
