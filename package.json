@@ -1,15 +1,50 @@
 {
-  "name": "loverry",
-  "version": "0.1.0",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "preview"
-  ],
+  "name": "preview",
+  "version": "0.0.0",
   "scripts": {
-    "build": "pnpm -r run build",
-    "test": "pnpm -r run test"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "prettier": "prettier . -c -w",
+    "test": "ng test",
+    "serve:ssr:preview": "node dist/preview/server/server.mjs"
   },
-  "packageManager": "pnpm@11.5.3+sha512.7ac1c919341c213a34dc0d02afb7143c5c26ac26ee8c4782deea821b8ac64d2134a081fd8941dae6e29bbb48f58dfc2b7fbceeccc07cb2f09d219d342a4969ed"
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^21.1.0",
+    "@angular/compiler": "^21.1.0",
+    "@angular/core": "^21.1.0",
+    "@angular/forms": "^21.1.0",
+    "@angular/platform-browser": "^21.1.0",
+    "@angular/platform-server": "^21.1.0",
+    "@angular/router": "^21.1.0",
+    "@angular/ssr": "^21.1.2",
+    "@ng-icons/bootstrap-icons": "^33.2.3",
+    "@ng-icons/core": "^33.2.3",
+    "@ng-icons/heroicons": "^33.2.3",
+    "@ng-icons/svgl": "^33.2.3",
+    "express": "^5.1.0",
+    "lz-string": "^1.5.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.1.2",
+    "@angular/cli": "^21.1.2",
+    "@angular/compiler-cli": "^21.1.0",
+    "@lazy-and-focused/prettier-config": "^1.1.0",
+    "@tailwindcss/postcss": "^4.1.12",
+    "@types/express": "^5.0.1",
+    "@types/node": "^20.17.19",
+    "jsdom": "^27.1.0",
+    "postcss": "^8.5.3",
+    "prettier": "^3.8.4",
+    "prettier-plugin-classnames": "^0.10.2",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "tailwindcss": "^4.1.12",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  }
 }
