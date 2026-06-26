@@ -1,9 +1,18 @@
 {
-  "installCommand": "pnpm install",
-  "buildCommand": "pnpm run build",
-  "outputDirectory": "apps/web-app/dist/web-app",
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/web-app/src/main.ts",
+      "use": "@vercel/webpack",
+      "config": {
+        "webpackConfig": "apps/web-app/webpack.config.js"
+      }
+    }
+  ],
   "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "server/server.mjs" }
+    {
+      "src": "/(.*)",
+      "dest": "/dist/apps/web-app/browser/index.html"
+    }
   ]
 }
