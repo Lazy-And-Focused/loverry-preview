@@ -1,0 +1,37 @@
+emotions:
+  громкая:
+    display_name: "Громко"
+    intensity: 0.9
+    description: "громкая, экспрессивная, привлекающая внимание"
+  напряженная:
+    display_name: "Напряжённо"
+    intensity: 0.7
+    description: "Напряжённая, сдержанная, тревожная"
+  жизнерадостная:
+    display_name: "Радостно"
+    intensity: 0.8
+    description: "Радостная, бодрая, оптимистичная"
+  дразнящая:
+    display_name: "Поддразнивающе"
+    intensity: 0.6
+    description: "Поддразнивающая, игривая, с лёгкой иронией"
+  подтрунькивающая:
+    display_name: "Забавно"
+    intensity: 0.5
+    description: "Забавная, слегка насмешливая, но добродушная"
+  грустная:
+    display_name: "Грустно"
+    intensity: 0.4
+    description: "Грустная, подавленная, меланхоличная"
+  злая:
+    display_name: "Зло"
+    intensity: 0.9
+    description: "Злая, раздражённая, агрессивная"
+  удивленная:
+    display_name: "Удивлённо"
+    intensity: 0.7
+    description: "Удивлённая, ошеломлённая"
+  нейтральная:
+    display_name: "Нейтрально"
+    intensity: 0.0
+    description: "Нейтральное состояние, без яркой эмоции"

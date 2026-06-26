@@ -1,4 +1,4 @@
 export const environment = {
-  REGISTRIES_PATH: "../lore/Реестр" as const,
-  SCENES_PATH: "../scenes" as const,
+  REGISTRIES_PATH: "./public/registries" as const,
+  SCENES_PATH: "./public/scenes" as const,
 } as const;

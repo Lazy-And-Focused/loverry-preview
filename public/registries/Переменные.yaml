@@ -1,0 +1,216 @@
+variables:
+  lanlir_control:
+    display_name: "Контроль Ланлира"
+    type: int
+    default: 5
+    min: 0
+    max: 10
+    category: psychology
+    persistent: true
+    description: "Уровень эмоционального самоконтроля Ланлира (0 – уязвим, 10 – ледяной)."
+
+  lanlir_secret_shared:
+    display_name: "Секрет Ланлира раскрыт"
+    type: bool
+    default: false
+    category: flags
+    persistent: true
+    description: "Ланлир добровольно раскрыл тайну переодевания."
+
+  lanlir_vulnerable_to_adeline:
+    display_name: "Уязвимость перед Адэлиной"
+    type: bool
+    default: false
+    category: flags
+    persistent: true
+    description: "Ланлир показал истинные чувства Адэлине."
+
+  amanir_bitterness:
+    display_name: "Горечь Аманира"
+    type: int
+    default: 3
+    min: 0
+    max: 10
+    category: psychology
+    persistent: true
+    description: "Накопленная горечь и язвительность Аманира."
+
+  amanir_in_team:
+    display_name: "Аманир в команде"
+    type: int
+    default: 0
+    min: 0
+    max: 2
+    category: progress
+    persistent: true
+    description: "Статус Аманира в команде FALL (0 – не в команде, 1 – приглашён, 2 – полноценный участник)."
+
+  amanir_mother_goodbye_quality:
+    display_name: "Качество прощания с матерью"
+    type: int
+    default: 0
+    min: 0
+    max: 10
+    category: psychology
+    persistent: true
+    description: "Качество прощания с матерью (растёт от тёплых разговоров)."
+
+  amanir_anger_at_mother:
+    display_name: "Злость на мать"
+    type: int
+    default: 2
+    min: 0
+    max: 10
+    category: psychology
+    persistent: true
+    description: "Злость на мать за пассивность (при высоком уровне – жестокое прощание)."
+
+  amanir_mother_seen:
+    display_name: "Замеченное состояние матери"
+    type: int
+    default: 0
+    min: 0
+    max: 10
+    category: progress
+    persistent: true
+    description: "Количество сцен, где игрок заметил состояние матери."
+
+  amanir_feels_used:
+    display_name: "Аманир чувствует себя использованным"
+    type: bool
+    default: false
+    category: flags
+    persistent: true
+    description: "Аманир чувствует, что его используют как функцию."
+
+  fenir_burden:
+    display_name: "Бремя Фенира"
+    type: int
+    default: 6
+    min: 0
+    max: 10
+    category: psychology
+    persistent: true
+    description: "Уровень подавленного напряжения Фенира (0 – отпустил, 10 – на грани срыва)."
+
+  fenir_ilya_guilt:
+    display_name: "Вина перед Ильёй"
+    type: bool
+    default: false
+    category: flags
+    persistent: true
+    description: "Фенир сорвался на младшего брата и чувствует вину."
+
+  fenir_truth_mother:
+    display_name: "Признание матери"
+    type: bool
+    default: false
+    category: flags
+    persistent: true
+    description: "Фенир признался матери в усталости и тёмных мыслях."
+
+  fenir_forgave_father:
+    display_name: "Прощение отца"
+    type: bool
+    default: false
+    category: flags
+    persistent: true
+    description: "Внутреннее прощение/отпускание отца."
+
+  radya_knows_too_much:
+    display_name: "Радя знает слишком много"
+    type: int
+    default: 4
+    min: 0
+    max: 10
+    category: psychology
+    persistent: true
+    description: "Степень погружения в слежку (0 – невинна, 10 – манипулятор)."
+
+  radya_distance:
+    display_name: "Дистанция Ради"
+    type: int
+    default: 7
+    min: 0
+    max: 10
+    category: psychology
+    persistent: true
+    description: "Защитная дистанция от прямого контакта (0 – влилась, 10 – полная изоляция)."
+
+  radya_stalk_lanlir:
+    display_name: "Радя следит за Ланлиром"
+    type: bool
+    default: true
+    category: flags
+    persistent: true
+    description: "Радя тайно следит за Ланлиром."
+
+  radya_used_info:
+    display_name: "Радя использовала информацию"
+    type: bool
+    default: false
+    category: flags
+    persistent: true
+    description: "Радя нечаянно выдала свою слежку."
+
+  cloud_leak_triggered:
+    display_name: "Облачный инцидент"
+    type: bool
+    default: false
+    category: flags
+    persistent: true
+    description: "Ланлир обнаружил тексты Аманира в облаке."
+
+  met_radya_amanir:
+    display_name: "Встреча Ради и Аманира"
+    type: bool
+    default: false
+    category: flags
+    persistent: true
+    description: "Встреча Ради и Аманира через кошку состоялась."
+
+  bond_radya_amanir:
+    display_name: "Связь Ради и Аманира"
+    type: int
+    default: 0
+    min: 0
+    max: 10
+    category: relationship
+    persistent: true
+    description: "Уровень доверия и связи между Радей и Аманиром."
+
+  met_fenir_amanir:
+    display_name: "Встреча Фенира и Аманира"
+    type: bool
+    default: false
+    category: flags
+    persistent: true
+    description: "Встреча Фенира и Аманира в поликлинике."
+
+  fenir_knows_shutter:
+    display_name: "Фенир знает ShutterGhost"
+    type: bool
+    default: false
+    category: flags
+    persistent: true
+    description: "Фенир вычислил, что ShutterGhost = Аманир."
+
+  bond_lanlir_radya:
+    display_name: "Связь Ланлира и Ради"
+    type: int
+    default: 0
+    min: 0
+    max: 10
+    category: relationship
+    persistent: true
+    description: "Уровень связи Ланлира и Ради."
+
+  adeline_return_known:
+    display_name: "Канал узнавания о возвращении Адэлины"
+    type: int
+    default: 0
+    min: 0
+    max: 3
+    category: progress
+    persistent: true
+    description: "Канал, через который Ланлир узнал о возвращении Адэлины (0 – не знает, 1 – от мамы, 2 – от Керио, 3 – от Айли)."
