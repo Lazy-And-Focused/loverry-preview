@@ -1,11 +1,12 @@
 import type { SerializedScene } from "@/types/exporter";
-import type { SerializedScenes } from "./scenes.loader";
+import { ScenesLoader, type SerializedScenes } from "./scenes.loader";
 import type { StateKey } from "@angular/core";
 import type { Observable } from "rxjs";
 
 import { Injectable, makeStateKey, TransferState } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { of } from "rxjs";
+import { map, of } from "rxjs";
+import { decompressFromBase64 } from "lz-string";
 
 @Injectable({ providedIn: "root" })
 export class ScenesService {
@@ -41,11 +42,23 @@ export class ScenesService {
   }
 
   private fetchScenes(): Observable<SerializedScenes> {
-    const scenes = this.http.get<SerializedScenes>(`/api/scenes`);
+    const json = this.http.get(`/scenes/scenes.json`, { responseType: "text" });
+    const scenes = json.pipe(map((data) => {
+      if (data.startsWith("{")) {
+        const json = JSON.parse(data);
+        return json;
+      }
+
+      const decompressed = decompressFromBase64(data);
+      const json = JSON.parse(decompressed);
+      return json;
+    }));
+
     return scenes;
   }
 
   private fetchScene(id: string): Observable<SerializedScene> {
+    throw new Error("method not realized.");
     const scene = this.http.get<SerializedScene>(`/api/scenes/${id}`);
     return scene;
   }
