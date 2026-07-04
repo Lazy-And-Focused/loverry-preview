@@ -19,22 +19,7 @@ const browserDistFolder = join(import.meta.dirname, "../browser");
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
-app.use(
-  express.static(browserDistFolder, {
-    maxAge: "1y",
-    index: false,
-    redirect: false,
-  }),
-);
-
-app.use((req, res, next) => {
-  angularApp
-    .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
-    .catch(next);
-});
+app.use(express.json());
 
 app.get("/api/characters", async (_, res) => {
   const loader = new RegistryLoader(environment.REGISTRIES_PATH);
@@ -67,6 +52,23 @@ app.get("/api/scenes/:id", async (req, res) => {
     .catch(() => {
       res.sendStatus(HttpStatusCode.BadRequest);
     });
+});
+
+app.use(
+  express.static(browserDistFolder, {
+    maxAge: "1y",
+    index: false,
+    redirect: false,
+  }),
+);
+
+app.use((req, res, next) => {
+  angularApp
+    .handle(req)
+    .then((response) =>
+      response ? writeResponseToNodeResponse(response, res) : next(),
+    )
+    .catch(next);
 });
 
 if (isMainModule(import.meta.url) || process.env["pm_id"]) {

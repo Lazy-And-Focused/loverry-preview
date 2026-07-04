@@ -1,7 +1,7 @@
-import type { SerializedScenes } from "@/services/scenes.loader";
-import type { SerializedSceneNode } from "@/types/exporter";
+import type { SerializedScene, SerializedSceneNode } from "@/types/exporter";
 import { ScenesService } from "@/services/scenes.service";
 
+import { Node } from "@/app/components/node/node.component";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import {
@@ -11,7 +11,6 @@ import {
   signal,
   ViewChild,
 } from "@angular/core";
-import { Node } from "@/app/components/node/node.component";
 
 @Component({
   selector: "scenes",
@@ -24,27 +23,29 @@ export class ScenesComponent {
   @ViewChild("main", { read: ElementRef })
   public reference!: ElementRef<HTMLElement>;
 
-  public readonly scenes = signal<SerializedScenes | null>(null);
   public readonly currentNodes = signal<SerializedSceneNode[]>([]);
   public readonly currentSceneId = signal<string>("scene_h1_a1_d1_o1");
   public readonly currentSceneIndex = signal<number>(0);
+  public readonly cachedNextScene = signal<SerializedScene | null>(null);
   public readonly sceneIds = signal<string[]>([]);
 
   public constructor() {}
 
   public ngOnInit() {
-    const observable = this.scenesService.execute();
-    observable.subscribe((scenes) => {
-      this.scenes.set(scenes);
-      this.sceneIds.set(Object.keys(scenes));
-      this.currentNodes.set(scenes[this.currentSceneId()].nodes);
+    const scenesObservable = this.scenesService.fetcher.getAllScenesId();
+    scenesObservable.subscribe((scenes) => {
+      this.sceneIds.set(scenes);
+
+      const id = this.currentSceneId();
+      this.loadScene(id);
     });
   }
 
-  public changeScene(target: string) {
-    this.currentSceneId.set(target);
-    this.currentSceneIndex.set(this.sceneIds().indexOf(target));
-    this.currentNodes.set(this.scenes()![target].nodes);
+  public changeScene(scene: SerializedScene) {
+    this.currentSceneId.set(scene.metadata.id);
+    const index = this.sceneIds().indexOf(scene.metadata.id);
+    this.currentSceneIndex.set(index);
+    this.currentNodes.set(scene.nodes);
 
     this.onSceneChange();
   }
@@ -52,7 +53,8 @@ export class ScenesComponent {
   public select(event: Event) {
     const select = event.target as HTMLSelectElement;
     const target = select.value;
-    this.changeScene(target);
+    
+    return this.loadScene(target);
   }
 
   public previousScene() {
@@ -60,7 +62,54 @@ export class ScenesComponent {
   }
 
   public nextScene() {
-    this.moveScene(1);
+    return this.loadNextScene();
+  }
+
+  public loadScene(id: string) {
+    const observable = this.scenesService.execute(id);
+    const subscription = observable.subscribe((scene) => {
+      return this.changeScene(scene);
+    });
+    
+    return subscription;
+  }
+
+  private loadNextScene() {
+    const cachedScene = this.cachedNextScene();
+    if (cachedScene) {
+      this.changeScene(cachedScene);
+      return this.cacheNextScene();
+    }
+
+    const sceneId = this.getNextSceneId();
+    const observable = this.scenesService.execute(sceneId);
+    const subscription = observable.subscribe((scene) => {
+      this.changeScene(scene);
+      return this.cacheNextScene();
+    });
+
+    return subscription;
+  }
+
+  private cacheNextScene() {
+    const sceneId = this.getNextSceneId();
+    if (!sceneId) {
+      this.cachedNextScene.set(null);
+      return null;
+    }
+
+    const observable = this.scenesService.execute(sceneId);
+    const subscription = observable.subscribe((scene) => {
+      return this.cachedNextScene.set(scene);
+    });
+
+    return subscription;
+  }
+
+  private getNextSceneId() {
+    const currentIndex = this.currentSceneIndex();
+    const nextSceneId = this.sceneIds()[currentIndex+1];
+    return nextSceneId;
   }
 
   private moveScene(value: 1 | -1) {
@@ -70,14 +119,11 @@ export class ScenesComponent {
     this.currentSceneIndex.set(index);
 
     const sceneId = sceneIds[index];
-    this.currentSceneId.set(sceneId);
-    this.currentNodes.set(this.scenes()![sceneId].nodes);
-
-    this.onSceneChange();
+    return this.loadScene(sceneId);
   }
 
   private onSceneChange() {
-    this.reference.nativeElement.scrollIntoView({
+    this.reference?.nativeElement?.scrollIntoView?.({
       behavior: "smooth",
       block: "start",
     });

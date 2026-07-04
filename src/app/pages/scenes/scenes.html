@@ -27,7 +27,7 @@
 
   <main #main class="flex flex-col gap-6 bg-(--bg-secondary) p-8">
     @for (node of currentNodes(); track node.id) {
-      <scene-node [node]="node" (changeScene)="changeScene($event)" />
+      <scene-node [node]="node" (changeScene)="loadScene($event)" />
     }
   </main>
 

@@ -1,8 +1,9 @@
 import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 
-import { NgIcon, provideIcons } from "@ng-icons/core";
+import { provideIcons } from "@ng-icons/core";
 
+import { IconLink } from "@/app/components/icon-link";
 import { heroGlobeAlt } from "@ng-icons/heroicons/outline";
 import {
   bootstrapTelegram,
@@ -13,7 +14,7 @@ import {
 @Component({
   selector: "default-layout",
   templateUrl: "./default.html",
-  imports: [RouterOutlet, NgIcon],
+  imports: [RouterOutlet, IconLink],
   viewProviders: [
     provideIcons({
       heroGlobeAlt,

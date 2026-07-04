@@ -2,7 +2,11 @@ emotions:
   громкая:
     display_name: "Громко"
     intensity: 0.9
-    description: "громкая, экспрессивная, привлекающая внимание"
+    description: "Громкая, экспрессивная, привлекающая внимание"
+  тихая:
+    display_name: "Тихо"
+    intensity: 0.2
+    description: "Тихо, не привлекающая внимание"
   напряженная:
     display_name: "Напряжённо"
     intensity: 0.7

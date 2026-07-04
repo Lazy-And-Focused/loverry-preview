@@ -1,12 +1,11 @@
 import type { SerializedScene } from "@/types/exporter";
-import { ScenesLoader, type SerializedScenes } from "./scenes.loader";
+import type { SerializedScenes } from "./scenes.loader";
 import type { StateKey } from "@angular/core";
 import type { Observable } from "rxjs";
 
 import { Injectable, makeStateKey, TransferState } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { map, of } from "rxjs";
-import { decompressFromBase64 } from "lz-string";
+import { ScenesFetcher } from "./scenes-fetcher.service";
+import { of } from "rxjs";
 
 @Injectable({ providedIn: "root" })
 export class ScenesService {
@@ -14,7 +13,7 @@ export class ScenesService {
 
   public constructor(
     private readonly transferState: TransferState,
-    private readonly http: HttpClient,
+    public readonly fetcher: ScenesFetcher
   ) {}
 
   public execute(id: string): Observable<SerializedScene>;
@@ -26,41 +25,20 @@ export class ScenesService {
       return stored;
     }
 
-    //@ts-expect-error
     const observable = this.fetch(id);
     return observable;
   }
 
-  private fetch(id: string): Observable<SerializedScene>;
-  private fetch(id?: undefined): Observable<SerializedScenes>;
   private fetch(id?: string) {
-    if (id) {
-      return this.fetchScene(id);
-    }
-
-    return this.fetchScenes();
-  }
-
-  private fetchScenes(): Observable<SerializedScenes> {
-    const json = this.http.get(`/scenes/scenes.json`, { responseType: "text" });
-    const scenes = json.pipe(map((data) => {
-      if (data.startsWith("{")) {
-        const json = JSON.parse(data);
-        return json;
-      }
-
-      const decompressed = decompressFromBase64(data);
-      const json = JSON.parse(decompressed);
-      return json;
-    }));
-
-    return scenes;
-  }
-
-  private fetchScene(id: string): Observable<SerializedScene> {
-    throw new Error("method not realized.");
-    const scene = this.http.get<SerializedScene>(`/api/scenes/${id}`);
-    return scene;
+    //@ts-expect-error
+    const key = this.makeStateKey(id);
+    //@ts-expect-error
+    const observable = this.fetcher.execute(id);
+    observable.subscribe((data) => {
+      return this.transferState.set(key, data);
+    });
+    
+    return observable;
   }
 
   private getFromState(
@@ -93,7 +71,7 @@ export class ScenesService {
   private makeStateKey(id?: undefined): StateKey<SerializedScenes>;
   private makeStateKey(id?: string) {
     if (id) {
-      return makeStateKey<SerializedScene>(`scenes_${id}`);
+      return makeStateKey<SerializedScene>(`${id}`);
     }
 
     return ScenesService.SCENES_KEY;
