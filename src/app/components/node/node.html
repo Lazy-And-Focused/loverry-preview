@@ -14,15 +14,10 @@
     class="animate-[fade-up_0.3s_ease-out] rounded-xl border-l-4
       border-(--accent-blue) bg-(--bg-elevated) p-3"
   >
-    <strong class="font-semibold text-(--accent-blue)">{{
-      formatText(node.character)
-    }}</strong>
-    @if (node.emotion) {
-      <span class="text-sm text-(--fg-muted)">
-        ({{ formatText(node.emotion) }})</span
-      >
-    }
-    : {{ formatText(node.text) }}
+    <strong class="font-semibold text-(--accent-blue)">{{ formatText(node.character)}}</strong>
+    <span *ngIf="node.emotion" class="text-sm text-(--fg-muted)">
+      ({{ formatEmotion(node.emotion) }})</span>
+    <span *ngIf="node.action">, {{ node.action }}</span><span>: {{ formatText(node.text) }}</span>
   </div>
 </ng-template>
 

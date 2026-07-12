@@ -11,6 +11,9 @@ import {
   signal,
   ViewChild,
 } from "@angular/core";
+import { RegistriesService } from "@/services/registries.service";
+import { Registries } from "@/utils/registries.loader";
+import { EmotionsRegistry } from "@/types/registries";
 
 @Component({
   selector: "scenes",
@@ -19,19 +22,27 @@ import {
 })
 export class ScenesComponent {
   private readonly scenesService = inject(ScenesService);
+  private readonly registriesService = inject(RegistriesService);
 
   @ViewChild("main", { read: ElementRef })
-  public reference!: ElementRef<HTMLElement>;
+  protected reference!: ElementRef<HTMLElement>;
 
-  public readonly currentNodes = signal<SerializedSceneNode[]>([]);
-  public readonly currentSceneId = signal<string>("scene_h1_a1_d1_o1");
-  public readonly currentSceneIndex = signal<number>(0);
-  public readonly cachedNextScene = signal<SerializedScene | null>(null);
-  public readonly sceneIds = signal<string[]>([]);
+  protected readonly currentNodes = signal<SerializedSceneNode[]>([]);
+  protected readonly currentSceneId = signal<string>("scene_h1_a1_d1_o1");
+  protected readonly currentSceneIndex = signal<number>(0);
+  protected readonly cachedNextScene = signal<SerializedScene | null>(null);
+  protected readonly sceneIds = signal<string[]>([]);
+
+  protected readonly emotions = signal<EmotionsRegistry>({});
 
   public constructor() {}
 
   public ngOnInit() {
+    const emotionsObservable = this.registriesService.execute("emotions");
+    emotionsObservable.subscribe((emotions) => {
+      this.emotions.set(emotions);
+    });
+
     const scenesObservable = this.scenesService.fetcher.getAllScenesId();
     scenesObservable.subscribe((scenes) => {
       this.sceneIds.set(scenes);
@@ -43,7 +54,8 @@ export class ScenesComponent {
 
   public changeScene(scene: SerializedScene) {
     this.currentSceneId.set(scene.metadata.id);
-    const index = this.sceneIds().indexOf(scene.metadata.id);
+    const scenesIds = this.sceneIds();
+    const index = scenesIds.indexOf(scene.metadata.id);
     this.currentSceneIndex.set(index);
     this.currentNodes.set(scene.nodes);
 

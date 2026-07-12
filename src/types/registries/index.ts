@@ -14,6 +14,8 @@ export type CharacterEntry = {
 
 
 export type EmotionEntry = {
+  display_name: string;
+  description: string;
   intensity: number;
 };
 

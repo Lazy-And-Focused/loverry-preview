@@ -8,12 +8,12 @@ import {
   Signal,
   TemplateRef,
   viewChild,
-  ViewContainerRef,
 } from "@angular/core";
 import {
   SerializedSceneNode,
   SerializedTransitionNode,
 } from "@/types/exporter";
+import { EmotionsRegistry } from "@/types/registries";
 
 const SCENES = {
   action: "action",
@@ -82,6 +82,9 @@ export class Node {
   @Input({ required: true })
   public node!: SerializedSceneNode;
 
+  @Input({ required: true })
+  public emotions!: EmotionsRegistry;
+
   @Output()
   public changeScene = new EventEmitter<string>();
 
@@ -113,6 +116,10 @@ export class Node {
     });
 
     return this.avoidUndescore(content);
+  }
+
+  public formatEmotion(emotion: string) {
+    return this.emotions[emotion].display_name;
   }
 
   private avoidUndescore(text: string): string {

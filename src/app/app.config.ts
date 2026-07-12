@@ -4,7 +4,7 @@ import {
   provideBrowserGlobalErrorListeners,
 } from "@angular/core";
 
-import { routes } from "./app.routes";
+import { routes } from "./app.module";
 import { provideHttpClient, withFetch } from "@angular/common/http";
 import {
   provideClientHydration,

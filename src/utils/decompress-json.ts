@@ -4,7 +4,7 @@ import { decompressFromBase64 } from "lz-string";
 
 export const maybeDecompressAndParseJson = <T = unknown>(observable: Observable<string>) => {
   const json = observable.pipe(map((data) => {
-    if (data.startsWith("{")) {
+    if (data.startsWith("{") || data.startsWith("[")) {
       const json = JSON.parse(data);
       return json as T;
     }

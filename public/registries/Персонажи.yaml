@@ -169,3 +169,9 @@ characters:
     name: "Продавец"
     short_name: "Продавец"
     description: "Продавец"
+
+  Хором:
+    display_name: "Хором"
+    name: "Хором"
+    short_name: "Хором"
+    description: "Хором"

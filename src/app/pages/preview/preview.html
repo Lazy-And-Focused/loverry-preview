@@ -4,7 +4,7 @@
 >
   @let node = currentNodes()[currentNodeIndex()];
   @if (node) {
-    <scene-node [node]="node" (changeScene)="changeScene($event)" />
+    <scene-node [emotions]="{}" [node]="node" (changeScene)="changeScene($event)" />
   }
 
   <button

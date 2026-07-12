@@ -6,9 +6,9 @@ import {
   writeResponseToNodeResponse,
 } from "@angular/ssr/node";
 
-import { RegistryLoader } from "./utils/registries.loader";
+import { Registries, RegistryLoader } from "./utils/registries.loader";
 
-import { environment } from "./environments/environment.development";
+import { environment } from "./environments/environment";
 import { ScenesLoader } from "./services/scenes.loader";
 
 import { join } from "node:path";
@@ -17,7 +17,9 @@ import express from "express";
 const browserDistFolder = join(import.meta.dirname, "../browser");
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+const angularApp = new AngularNodeAppEngine({
+  allowedHosts: environment.ALLOWED_HOSTS
+});
 
 app.use(express.json());
 
@@ -26,6 +28,30 @@ app.get("/api/characters", async (_, res) => {
   const data = await loader.execute("characters");
 
   res.json(data);
+});
+
+const REGISTRIES: Record<keyof Registries, string> = {
+  variables: "Переменные",
+  characterAnimations: "Персонажи_Анимации",
+  characters: "Персонажи",
+  events: "События",
+  backgroundAnimations: "Фон_Анимации",
+  emotions: "Эмоции",
+  gameEffects: "Эффекты",
+};
+
+app.get("/api/registries/:registry", async (req, res) => {
+  const { registry } = req.params;
+
+  if (!(registry in REGISTRIES)) {
+    res.sendStatus(500);
+    return;
+  }
+
+  const loader = new RegistryLoader(environment.REGISTRIES_PATH);
+  const data = await loader.execute(registry as keyof Registries);
+
+  res.json({data});
 });
 
 app.get("/api/scenes", async (_, res) => {
